@@ -1,6 +1,6 @@
 {
   "name": "bdcash-smart-contracts-playground",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -8,8 +8,8 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "@bdcash-protocol/compiler": "^1.0.1",
-    "@bdcash-protocol/core": "^1.0.1",
+    "@bdcash-protocol/compiler": "^1.0.0",
+    "@bdcash-protocol/core": "^1.0.2",
     "axios": "^0.20.0",
     "buefy": "^0.9.3",
     "coinkey": "^3.0.0",
