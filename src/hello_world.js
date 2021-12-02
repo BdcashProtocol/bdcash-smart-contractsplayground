@@ -7,7 +7,7 @@ exports.code = `/**
  */
 
 // DEFINING COMPILER VERSION
-/* Scrypta v0.0.1 */
+/* BDCash v0.0.1 */
 
 const time = new Date()
 
