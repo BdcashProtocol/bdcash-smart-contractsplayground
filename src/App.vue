@@ -36,21 +36,21 @@
                 <h1 class="title is-1">Start Now</h1>
                 <br />
                 <h2 class="subtitle">
-                  <br />You need a Scrypta Identity to enter the platform.
+                  <br />You need a BDcash Identity to enter the platform.
                   <br />
-                  <br />Use <a href="https://id.scryptachain.org/" target="_blank">Scrypta ID Extension</a> or <a v-on:click="showCreate">create a new wallet</a>.
+                  <br />Use <a href="https://bdcashprotocol.com/download/" target="_blank">BDCash Wallet Extension</a> or <a v-on:click="showCreate">create a new wallet</a>.
                   <br />
                   <br />
                   <div id="scrypta-login" gateway="0240f294ef20c7bbb82bae24d8d22c7ab94d195adf153162482b6bf540393d7dd5" dapp="Smart Contracts Playground"></div>
                 </h2>
               </div>
             </div>
-            <br />Scrypta Smart Contracts Playground
+            <br />BDCash Smart Contracts Playground
             <a
-              href="https://github.com/scryptachain/scrypta-smart-contracts-playground"
+              href="https://github.com/BdcashProtocol/bdcash-smart-contracts-playground"
               target="_blank"
             >open-source</a> project by
-            <a href="https://scrypta.foundation" target="_blank">Scrypta Foundation</a>.
+            <a href="https://bdcashprotocol.com" target="_blank">BDCash Protocol</a>.
             <br />
             <br />
           </div>
@@ -104,12 +104,12 @@
 </template>
 
 <script>
-  let ScryptaCore = require("@scrypta/core");
+  let ScryptaCore = require("@bdcash-protocol/core");
 
   export default {
     data() {
       return {
-        scrypta: new ScryptaCore(true),
+        scrypta: new BdcashCore(true),
         address: "",
         wallet: "",
         isLogging: true,
