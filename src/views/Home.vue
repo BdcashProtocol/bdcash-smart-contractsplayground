@@ -67,7 +67,7 @@
                 v-if="selected === fn"
                 size="is-small"
                 expanded
-                type="is-danger"
+                type="is-warning"
                 style="text-align: left"
               >
                 {{ fn }}
@@ -233,7 +233,7 @@
                   "
                   size="is-small"
                   expanded
-                  type="is-danger"
+                  type="is-warning"
                   style="text-align: left"
                 >
                   {{ fn }}
@@ -250,7 +250,7 @@
               size="is-medium"
               v-on:click="runremote"
               expanded
-              type="is-primary"
+              type="is-success"
               >RUN</b-button
             >
           </div>
@@ -283,9 +283,9 @@ import "prismjs/components/prism-clike";
 import "prismjs/components/prism-javascript";
 import "prismjs/themes/prism-tomorrow.css";
 const hello_world = require("../hello_world.js");
-const ScryptaCore = require("@bdcash-protocol/core");
-const ScryptaCompiler = require("@bdcash-protocol/compiler");
-var CoinKey = require("coinkey");
+const BDCashCore = require("@bdcash-protocol/core");
+const BdcashCompiler = require("@bdcash-protocol/compiler");
+var CoinKey = require("@bdcash-protocol/coinkey");
 const axios = require("axios");
 const LZUTF8 = require("lzutf8");
 
@@ -296,8 +296,8 @@ export default {
   data: () => ({
     code: hello_world.code,
     identity: {},
-    scrypta: new ScryptaCore(true),
-    v001: ScryptaCompiler.v001,
+    bdcash: new BDCashCore(true),
+    v001: BdcashCompiler.v001,
     coinkey: CoinKey,
     remote: [],
     contract: {},
@@ -320,10 +320,10 @@ export default {
   }),
   async mounted() {
     const app = this;
-    app.wallet = await app.scrypta.importBrowserSID();
-    app.wallet = await app.scrypta.returnDefaultIdentity();
-    let address = await app.scrypta.createAddress("SESSION");
-    app.scrypta.staticnodes = true;
+    app.wallet = await app.bdcash.importBrowserSID();
+    app.wallet = await app.bdcash.returnDefaultIdentity();
+    let address = await app.bdcash.createAddress("SESSION");
+    app.bdcash.staticnodes = true;
     app.session = address;
     if (localStorage.getItem("contracts") !== null) {
       let stored = JSON.parse(localStorage.getItem("contracts"));
@@ -337,9 +337,9 @@ export default {
     if (app.wallet.length > 0) {
       let SIDS = app.wallet.split(":");
       app.address = SIDS[0];
-      let identity = await app.scrypta.returnIdentity(app.address);
+      let identity = await app.bdcash.returnIdentity(app.address);
       app.wallet = identity;
-      let remote = await app.scrypta.post("/read", {
+      let remote = await app.bdcash.post("/read", {
         protocol: "ida://",
       });
       let unique = [];
@@ -407,9 +407,9 @@ export default {
         },
         trapFocus: true,
         onConfirm: async (password) => {
-          let key = await app.scrypta.readKey(password, app.wallet.wallet);
+          let key = await app.bdcash.readKey(password, app.wallet.wallet);
           if (key !== false) {
-            let searchsigned = await app.scrypta.createContractRequest(
+            let searchsigned = await app.bdcash.createContractRequest(
               app.wallet.wallet,
               password,
               {
@@ -425,7 +425,7 @@ export default {
               "SEARCH WHERE CONTRACT " + app.lastRemote.address + " IS STORED"
             );
             try {
-              let maintainers = await app.scrypta.post(
+              let maintainers = await app.bdcash.post(
                 "/contracts/run",
                 searchsigned
               );
@@ -437,7 +437,7 @@ export default {
                   } catch (e) {
                     params = app.params;
                   }
-                  let requestsigned = await app.scrypta.createContractRequest(
+                  let requestsigned = await app.bdcash.createContractRequest(
                     app.wallet.wallet,
                     password,
                     {
@@ -453,7 +453,7 @@ export default {
                   while (answered === false) {
                     let idanode = maintainers[0];
                     app.log("ASKING " + idanode.url + " TO RESPONSE");
-                    let response = await app.scrypta.post(
+                    let response = await app.bdcash.post(
                       "/contracts/run",
                       requestsigned,
                       idanode.url
@@ -499,13 +499,13 @@ export default {
           },
           trapFocus: true,
           onConfirm: async (password) => {
-            let key = await app.scrypta.readKey(password, app.wallet.wallet);
+            let key = await app.bdcash.readKey(password, app.wallet.wallet);
             if (key !== false) {
-              let pubkey = await app.scrypta.getPublicKey(key.prv);
-              let address = await app.scrypta.getAddressFromPubKey(pubkey);
+              let pubkey = await app.bdcash.getPublicKey(key.prv);
+              let address = await app.bdcash.getAddressFromPubKey(pubkey);
               app.log("AUTHOR ADDRESS IS: " + address);
-              let balance = await app.scrypta.get("/balance/" + address);
-              const hash = await app.scrypta.hash(
+              let balance = await app.bdcash.get("/balance/" + address);
+              const hash = await app.bdcash.hash(
                 key.prv + ":" + app.contract.name
               );
               let contract = new CoinKey(Buffer.from(hash, "hex"), {
@@ -520,7 +520,7 @@ export default {
               manifest.code = LZUTF8.compress(app.code, {
                 outputEncoding: "Base64",
               });
-              let sid = await app.scrypta.buildWallet(
+              let sid = await app.bdcash.buildWallet(
                 "TEMPORARY",
                 contract.publicAddress,
                 {
@@ -530,7 +530,7 @@ export default {
                 false
               );
               if (balance.balance > 0.011) {
-                let genesis_check = await app.scrypta.post("/read", {
+                let genesis_check = await app.bdcash.post("/read", {
                   address: manifest.address,
                   refID: "genesis",
                   protocol: "ida://",
@@ -543,7 +543,7 @@ export default {
                     genesis.contract.address === manifest.address
                   ) {
                     app.log("GENESIS EXIST, CHECK IF EXIST VERSION.");
-                    let version_check = await app.scrypta.post("/read", {
+                    let version_check = await app.bdcash.post("/read", {
                       address: manifest.address,
                       refID: manifest.version,
                       protocol: "ida://",
@@ -557,11 +557,11 @@ export default {
                         genesis.contract.immutable === undefined ||
                         genesis.contract.immutable === "false"
                       ) {
-                        let signed = await app.scrypta.signMessage(
+                        let signed = await app.bdcash.signMessage(
                           key.prv,
                           JSON.stringify(manifest)
                         );
-                        let contractBalance = await app.scrypta.get(
+                        let contractBalance = await app.bdcash.get(
                           "/balance/" + manifest.address
                         );
                         let funded = false;
@@ -574,7 +574,7 @@ export default {
                           funded = true;
                         }
                         if (funded !== false) {
-                          let update_written = await app.scrypta.write(
+                          let update_written = await app.bdcash.write(
                             sid,
                             "TEMPORARY",
                             JSON.stringify(signed),
@@ -611,11 +611,11 @@ export default {
                   }
                 } else {
                   app.log("SIGNING GENESIS TRANSACTION.");
-                  let signed = await app.scrypta.signMessage(
+                  let signed = await app.bdcash.signMessage(
                     key.prv,
                     JSON.stringify(manifest)
                   );
-                  let contractBalance = await app.scrypta.get(
+                  let contractBalance = await app.bdcash.get(
                     "/balance/" + manifest.address
                   );
                   let funded = false;
@@ -625,7 +625,7 @@ export default {
                     funded = true;
                   }
                   if (funded !== false) {
-                    let genesis_written = await app.scrypta.write(
+                    let genesis_written = await app.bdcash.write(
                       sid,
                       "TEMPORARY",
                       JSON.stringify(signed),
@@ -668,15 +668,15 @@ export default {
         let success = false;
         let retries = 0;
         while (funded === false) {
-          let pubkey = await app.scrypta.getPublicKey(privkey);
-          let address = await app.scrypta.getAddressFromPubKey(pubkey);
-          let sid = await app.scrypta.buildWallet(
+          let pubkey = await app.bdcash.getPublicKey(privkey);
+          let address = await app.bdcash.getAddressFromPubKey(pubkey);
+          let sid = await app.bdcash.buildWallet(
             "TEMPORARY",
             address,
             { prv: privkey, key: pubkey },
             false
           );
-          let sent = await app.scrypta.send(
+          let sent = await app.bdcash.send(
             sid,
             "TEMPORARY",
             contractAddress,
@@ -702,7 +702,7 @@ export default {
     },
     async getLastBlock() {
       const app = this;
-      let info = await app.scrypta.get("/wallet/getinfo");
+      let info = await app.bdcash.get("/wallet/getinfo");
       app.block = info.blocks;
     },
     highlighter(code) {
@@ -779,7 +779,7 @@ export default {
           app.block !== undefined &&
           parseInt(app.block) > 0
         ) {
-          let block = await app.scrypta.get("/analyze/" + app.block);
+          let block = await app.bdcash.get("/analyze/" + app.block);
           app.params = block.data;
         }
         let params;
@@ -791,12 +791,12 @@ export default {
         let requesthex = Buffer.from(
           JSON.stringify({ function: app.selected, params: params })
         ).toString("hex");
-        let request = await app.scrypta.signMessage(
+        let request = await app.bdcash.signMessage(
           app.session.prv,
           requesthex
         );
 
-        let result = await axios.post("https://engine.scryptachain.org/run", {
+        let result = await axios.post("https://engine.bdcashprotocol.com/run", {
           address: "code:" + codehex,
           request: request,
         });

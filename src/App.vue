@@ -4,7 +4,7 @@
       <b-navbar>
         <template slot="brand">
           <b-navbar-item tag="router-link" :to="{ path: '/' }">
-            BDCash Smart Contracts Playground
+            BDCash Smart Contracts Platform
           </b-navbar-item>
         </template>
         
@@ -17,7 +17,7 @@
           <b-navbar-item tag="div">
             <div class="buttons">
               <v-gravatar class="gravatar" :email="address" style="margin-right: 10px; height: 80px;max-height: 37px;float: right;margin-top: -8px;border-radius: 4px;"/>
-              <a v-on:click="logout" class="logout button is-primary">
+              <a v-on:click="logout" class="logout button is-warning">
                 <strong>Logout</strong>
               </a>
             </div>
@@ -31,25 +31,21 @@
       <section class="hero">
         <div class="hero-body" style="padding: 0;">
           <div class="container" id="create" style="margin-top:50px;">
-            <div class="card">
+            <div class="card bg bg-dark text-light">
               <div style="padding: 50px 20px;">
                 <h1 class="title is-1">Start Now</h1>
                 <br />
                 <h2 class="subtitle">
-                  <br />You need a BDcash Identity to enter the platform.
+                  <br />You need a ID BDcash to enter the platform.
                   <br />
                   <br />Use <a href="https://bdcashprotocol.com/download/" target="_blank">BDCash Wallet Extension</a> or <a v-on:click="showCreate">create a new wallet</a>.
                   <br />
                   <br />
-                  <div id="scrypta-login" gateway="0240f294ef20c7bbb82bae24d8d22c7ab94d195adf153162482b6bf540393d7dd5" dapp="Smart Contracts Playground"></div>
+                  <div id="bdcash-login" gateway="0240f294ef20c7bbb82bae24d8d22c7ab94d195adf153162482b6bf540393d7dd5" dapp="Smart Contracts Playground"></div>
                 </h2>
               </div>
             </div>
-            <br />BDCash Smart Contracts Playground
-            <a
-              href="https://github.com/BdcashProtocol/bdcash-smart-contracts-playground"
-              target="_blank"
-            >open-source</a> project by
+            <br />BDCash Smart Contracts Platform powered by
             <a href="https://bdcashprotocol.com" target="_blank">BDCash Protocol</a>.
             <br />
             <br />
@@ -104,12 +100,12 @@
 </template>
 
 <script>
-  let ScryptaCore = require("@bdcash-protocol/core");
+  let BDCashCore = require("@bdcash-protocol/core");
 
   export default {
     data() {
       return {
-        scrypta: new BdcashCore(true),
+        bdcash: new BDCashCore(true),
         address: "",
         wallet: "",
         isLogging: true,
@@ -124,12 +120,12 @@
     },
     async mounted() {
       const app = this;
-      app.wallet = await app.scrypta.importBrowserSID();
-      app.wallet = await app.scrypta.returnDefaultIdentity();
+      app.wallet = await app.bdcash.importBrowserSID();
+      app.wallet = await app.bdcash.returnDefaultIdentity();
       if (app.wallet.length > 0) {
         let SIDS = app.wallet.split(":");
         app.address = SIDS[0];
-        let identity = await app.scrypta.returnIdentity(app.address);
+        let identity = await app.bdcash.returnIdentity(app.address);
         app.wallet = identity;
         app.isLogging = false;
       } else {
@@ -151,9 +147,9 @@
             },
             trapFocus: true,
             onConfirm: async password => {
-              let key = await app.scrypta.readKey(password, dataKey);
+              let key = await app.bdcash.readKey(password, dataKey);
               if (key !== false) {
-                app.scrypta.importPrivateKey(key.prv, password);
+                app.bdcash.importPrivateKey(key.prv, password);
                 localStorage.setItem("SID", dataKey)
                 let exp = dataKey.split(':')
                 localStorage.setItem("sid_backup", exp[0])
@@ -183,15 +179,15 @@
           if (app.passwordrepeat === app.password) {
             app.isCreating = true;
             setTimeout(async function() {
-              let id = await app.scrypta.createAddress(app.password, true);
-              let identity = await app.scrypta.returnIdentity(id.pub);
+              let id = await app.bdcash.createAddress(app.password, true);
+              let identity = await app.bdcash.returnIdentity(id.pub);
               app.address = id.pub;
               app.wallet = identity;
               localStorage.setItem("SID", id.walletstore);
               app.showCreateModal = false;
               app.password = "";
               app.passwordrepeat = "";
-              let tx = await app.scrypta.post("/init", {
+              let tx = await app.bdcash.post("/init", {
                 address: id.pub,
                 airdrop: true
               });
@@ -226,7 +222,7 @@
           trapFocus: true,
           onConfirm: async password => {
             let SID = localStorage.getItem('SID')
-            let key = await app.scrypta.readKey(password, SID);
+            let key = await app.bdcash.readKey(password, SID);
             if (key !== false) {
               var a = document.getElementById("downloadid");
               app.backup = true
@@ -262,7 +258,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
-    color: #2c3e50;
+    color: #000000;
   }
 
   #nav {
@@ -271,10 +267,10 @@
 
   #nav a {
     font-weight: bold;
-    color: #2c3e50;
+    color: #020202;
   }
 
   #nav a.router-link-exact-active {
-    color: #42b983;
+    color: #e2c623;
   }
 </style>
