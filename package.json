@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@bdcash-protocol/compiler": "^1.0.0",
-    "@bdcash-protocol/core": "^1.0.2",
+    "@bdcash-protocol/core": "^1.0.4",
     "axios": "^0.20.0",
     "buefy": "^0.9.3",
     "coinkey": "^3.0.0",
