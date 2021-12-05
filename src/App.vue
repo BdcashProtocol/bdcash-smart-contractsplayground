@@ -4,7 +4,7 @@
       <b-navbar>
         <template slot="brand">
           <b-navbar-item tag="router-link" :to="{ path: '/' }">
-            <img src="/logo.png" style="margin-right:20px" /> Smart Contracts Playground
+            BDCash Smart Contracts Playground
           </b-navbar-item>
         </template>
         
