@@ -1,6 +1,6 @@
 # BDCash VueJS dApp Starter
 
-<p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://raw.githubusercontent.com/BdcashProtocol/bdcash-mediakit/main/cole%C3%A7%C3%A3o/bdcash-logo-300h.png"/></p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://raw.githubusercontent.com/BdcashProtocol/bdcash-mediakit/main/cole%C3%A7%C3%A3o/playground.png"/></p>
 
 This is a simple dApp Starter written in VueJS that creates for you a simple PWA enabled with the BDCash Blockchain.
 
