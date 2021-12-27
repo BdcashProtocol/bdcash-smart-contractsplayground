@@ -401,7 +401,7 @@ export default {
     runremote() {
       const app = this;
       app.$buefy.dialog.prompt({
-        message: `Inserisci la password del wallet`,
+        message: `Inser PAssword to wallet`,
         inputAttrs: {
           type: "password",
         },
@@ -413,7 +413,7 @@ export default {
               app.wallet.wallet,
               password,
               {
-                contract: "LgSAtP3gPURByanZSM32kfEu9C1uyQ6Kfg",
+                contract: "8JpRAuMCg58Zr6eYjKNpRgXGHjmT8mi8GE",
                 function: "index",
                 params: {
                   contract: app.lastRemote.address,
@@ -509,9 +509,9 @@ export default {
                 key.prv + ":" + app.contract.name
               );
               let contract = new CoinKey(Buffer.from(hash, "hex"), {
-                private: 0xae,
-                public: 0x30,
-                scripthash: 0x0d,
+                private: 0x97,
+                public: 0x12,
+                scripthash: 0x53,
               });
               app.log("CONTRACT ADDRESS IS: " + contract.publicAddress);
               app.contract.v = 1;
@@ -529,7 +529,7 @@ export default {
                 },
                 false
               );
-              if (balance.balance > 0.011) {
+              if (balance.balance > 500) {
                 let genesis_check = await app.bdcash.post("/read", {
                   address: manifest.address,
                   refID: "genesis",
@@ -565,7 +565,7 @@ export default {
                           "/balance/" + manifest.address
                         );
                         let funded = false;
-                        if (contractBalance.balance < 0.002) {
+                        if (contractBalance.balance < 501) {
                           funded = await app.fundAddress(
                             manifest.address,
                             key.prv
@@ -619,7 +619,7 @@ export default {
                     "/balance/" + manifest.address
                   );
                   let funded = false;
-                  if (contractBalance.balance < 0.01) {
+                  if (contractBalance.balance < 501) {
                     funded = await app.fundAddress(manifest.address, key.prv);
                   } else {
                     funded = true;
@@ -680,7 +680,7 @@ export default {
             sid,
             "TEMPORARY",
             contractAddress,
-            0.01
+            500
           );
           if (sent !== false && sent !== null && sent.length === 64) {
             funded = true;
@@ -894,7 +894,7 @@ html {
 .sidebar {
   float: left;
   width: 25%;
-  background: #efefef;
+  background: #99900;
   height: calc(100vh - 55px);
   text-align: left;
 }

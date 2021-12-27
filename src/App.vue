@@ -41,7 +41,7 @@
                   <br />Use <a href="https://bdcashprotocol.com/download/" target="_blank">BDCash Wallet Extension</a> or <a v-on:click="showCreate">create a new wallet</a>.
                   <br />
                   <br />
-                  <div id="bdcash-login" gateway="0240f294ef20c7bbb82bae24d8d22c7ab94d195adf153162482b6bf540393d7dd5" dapp="Smart Contracts Playground"></div>
+                  <div id="bdcash-login" gateway="QmRbviFTS2caMhFWgEPURMyUEWy1uY9veSgfzDAPM4veFd" dapp="Smart Contracts Playground"></div>
                 </h2>
               </div>
             </div>

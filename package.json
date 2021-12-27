@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --production",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "@bdcash-protocol/compiler": "^1.0.1",
-    "@bdcash-protocol/core": "^1.0.9",
+    "@bdcash-protocol/core": "^1.1.0",
     "axios": "^0.20.0",
     "buefy": "^0.9.3",
     "@bdcash-protocol/coinkey": "^1.0.4",
