@@ -7,11 +7,12 @@
             BDCash Smart Contracts Platform
           </b-navbar-item>
         </template>
-        
-        <!-- UNCOMMENT FOR MENU
+     
         <template slot="start">
           <b-navbar-item href="/#/">Home</b-navbar-item>
-        </template> -->
+          <b-navbar-item href="https://bdcashprotocol.com" target="_blank">Website BDCash</b-navbar-item>
+          <b-navbar-item href="https://docs.bdcashprotocol.com" target="_blank">Docs</b-navbar-item>
+        </template>
 
         <template slot="end">
           <b-navbar-item tag="div">
@@ -34,10 +35,11 @@
             <div class="card bg bg-dark text-light">
               <div style="padding: 50px 20px;">
                 <h1 class="title is-1">Start Now</h1>
+                <img src="img/logo.png" class="img-fluid img-responsive">
                 <br />
                 <h2 class="subtitle">
                   <br />You need a ID BDcash to enter the platform.
-                  <br />
+                  <br />With Playground you'll be able to create your smart contracts, maintain them locally and deploy them on the network whenever you want, all fast and easy.
                   <br />Use <a href="https://bdcashprotocol.com/download/" target="_blank">BDCash Wallet Extension</a> or <a v-on:click="showCreate">create a new wallet</a>.
                   <br />
                   <br />
@@ -46,7 +48,7 @@
               </div>
             </div>
             <br />BDCash Smart Contracts Platform powered by
-            <a href="https://bdcashprotocol.com" target="_blank">BDCash Protocol</a>.
+            <a href="https://bdcashprotocol.com" target="_blank">BDCash Protocol Team</a>.
             <br />
             <br />
           </div>
@@ -263,6 +265,7 @@
 
   #nav {
     padding: 30px;
+    background: #e7c503;
   }
 
   #nav a {
@@ -271,6 +274,6 @@
   }
 
   #nav a.router-link-exact-active {
-    color: #e2c623;
+    color: #333127;
   }
 </style>

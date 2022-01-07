@@ -316,7 +316,7 @@ export default {
     isDeploying: false,
     local: [],
     session: {},
-    debug: "> Playground ready, please run a function first.",
+    debug: "> Playground BDCash ready, please run a function first.",
   }),
   async mounted() {
     const app = this;
@@ -855,7 +855,7 @@ html {
   width: 75%;
   height: 25vh;
   background: #000;
-  color: #00ff00;
+  color: #fbff00;
   bottom: 0;
   right: 0;
   text-align: left;
@@ -894,7 +894,7 @@ html {
 .sidebar {
   float: left;
   width: 25%;
-  background: #99900;
+  background: #999000;
   height: calc(100vh - 55px);
   text-align: left;
 }

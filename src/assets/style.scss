@@ -1,5 +1,5 @@
 @import "~bulma/sass/utilities/_all";
-$primary: #D8213B;
+$primary: #ca9f12;
 $primary-invert: findColorInvert($primary);
 $twitter: #4099FF;
 $twitter-invert: findColorInvert($twitter);
@@ -12,7 +12,13 @@ $twitter-invert: findColorInvert($twitter);
 }
 
 .sidebar{
-background-color: #99900;
+background-color: #ddb815;
+color: black;
+}
+
+body{
+
+background: #eecb58;
 }
 
 .number{
