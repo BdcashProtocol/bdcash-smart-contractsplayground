@@ -4,13 +4,13 @@
       <b-navbar>
         <template slot="brand">
           <b-navbar-item tag="router-link" :to="{ path: '/' }">
-            BDCash Smart Contracts Platform
+            BDCashProtocol Smart Contracts Platform
           </b-navbar-item>
         </template>
      
         <template slot="start">
           <b-navbar-item href="/#/">Home</b-navbar-item>
-          <b-navbar-item href="https://bdcashprotocol.com" target="_blank">Website BDCash</b-navbar-item>
+          <b-navbar-item href="https://bdcashprotocol.com" target="_blank">Website</b-navbar-item>
           <b-navbar-item href="https://docs.bdcashprotocol.com" target="_blank">Docs</b-navbar-item>
         </template>
 
@@ -47,8 +47,8 @@
                 </h2>
               </div>
             </div>
-            <br />BDCash Smart Contracts Platform powered by
-            <a href="https://bdcashprotocol.com" target="_blank">BDCash Protocol Team</a>.
+            <br />BDCashProtocol Smart Contracts Platform powered by
+            <a href="https://bdcashprotocol.com" target="_blank">BDCashProtocol Team</a>.
             <br />
             <br />
           </div>
@@ -102,7 +102,7 @@
 </template>
 
 <script>
-  let BDCashCore = require("@bdcash-protocol/core");
+  let BDCashCore = require("@bdeco/core");
 
   export default {
     data() {
@@ -265,15 +265,15 @@
 
   #nav {
     padding: 30px;
-    background: #e7c503;
+    background: #8d14c5;
   }
 
   #nav a {
     font-weight: bold;
-    color: #020202;
+    color: #ffffff;
   }
 
   #nav a.router-link-exact-active {
-    color: #333127;
+    color: #cfb1dd;
   }
 </style>

@@ -4,7 +4,7 @@
 
 This is a simple dApp Starter written in VueJS that creates for you a simple PWA enabled with the BDCash Blockchain.
 
-You'll be able to manage wallets, receive BDCASH, write and read data thanks to `@bdcash-protocol/core` npm package.
+You'll be able to manage wallets, receive BDCASH, write and read data thanks to `@bdeco/core` npm package.
 
 A simple login with .sid file is provided that allows you to use the best-practices of BDCash.
 

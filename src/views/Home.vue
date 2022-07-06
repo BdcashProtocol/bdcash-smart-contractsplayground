@@ -283,9 +283,9 @@ import "prismjs/components/prism-clike";
 import "prismjs/components/prism-javascript";
 import "prismjs/themes/prism-tomorrow.css";
 const hello_world = require("../hello_world.js");
-const BDCashCore = require("@bdcash-protocol/core");
-const BdcashCompiler = require("@bdcash-protocol/compiler");
-var CoinKey = require("@bdcash-protocol/coinkey");
+const BDCashCore = require("@bdeco/core");
+const BdcashCompiler = require("@bdeco/compiler");
+var CoinKey = require("@bdeco/coinkey");
 const axios = require("axios");
 const LZUTF8 = require("lzutf8");
 
@@ -316,7 +316,7 @@ export default {
     isDeploying: false,
     local: [],
     session: {},
-    debug: "> Playground BDCash ready, please run a function first.",
+    debug: "> Playground BDCashProtocol ready, please run a function first.",
   }),
   async mounted() {
     const app = this;
@@ -509,9 +509,9 @@ export default {
                 key.prv + ":" + app.contract.name
               );
               let contract = new CoinKey(Buffer.from(hash, "hex"), {
-                private: 0x97,
-                public: 0x12,
-                scripthash: 0x53,
+                private: 0x1A,
+                public: 0x19,
+                scripthash: 0x19,
               });
               app.log("CONTRACT ADDRESS IS: " + contract.publicAddress);
               app.contract.v = 1;
@@ -855,7 +855,7 @@ html {
   width: 75%;
   height: 25vh;
   background: #000;
-  color: #fbff00;
+  color: #31c015;
   bottom: 0;
   right: 0;
   text-align: left;
@@ -894,7 +894,7 @@ html {
 .sidebar {
   float: left;
   width: 25%;
-  background: #999000;
+  background: #830fb9;
   height: calc(100vh - 55px);
   text-align: left;
 }
